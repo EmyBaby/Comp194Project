@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Stage1
+  - Stage3
+  - Start
+  - Water
+  - Stage2
+  - Dirt
+  - RightHand
+  - LeftHand
+  - RightKnob
+  - LeftKnob
+  - Cleaner
   layers:
   - Default
   - TransparentFX

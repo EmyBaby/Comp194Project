@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,11 +65,12 @@ public class HandState : MonoBehaviour
                 }
                 dirtOnHand = true;
             }
-            if (soapTime >= 2 && bubbles == null)
+            if (soapTime >= 3 && bubbles == null)
             {
                 bubbles = Instantiate(bubbleGen, transform.position, transform.rotation, transform);
+                waterTime = 0;
             }
-            if (inWater && waterTime >= 5)
+            if (bubbles && waterTime >= 5)
             {
                 isDirty = false;
                 cleaning = true;
@@ -98,26 +100,39 @@ public class HandState : MonoBehaviour
                 {
                     foreach (GameObject dirt in dirtList)
                     {
-                        Object.Destroy(dirt);
+                        UnityEngine.Object.Destroy(dirt);
                     }
                     // Object.Destroy(transform.Find("DirtSphere(Clone)").gameObject);
                     // Debug.Log("Dirt destroyed");
                     destroyTimer = 0;
                     dirtOnHand = false;
                 }
+                waterTime = 0;
+                soapTime = 0;
             }
         }
-        if (gameObject.GetComponent<OVRGrabber>().m_grabbedObj.gameObject != null)
-        {
+        // Debug.Log(gameObject.GetComponent<OVRGrabber>().m_grabbedObj.gameObject.tag);
+        try{
+        // if (gameObject.GetComponent<OVRGrabber>().m_grabbedObj.gameObject)
+        // {
             if (gameObject.GetComponent<OVRGrabber>().m_grabbedObj.gameObject.tag == "Cleaner")
             {
                 touchCleaner = true;
+                // Debug.Log("Reads cleaner tag & sets touchCleaner true");
+            }
+            else
+            {
+                touchCleaner = false;
             }
         }
-        else
-        {
-            touchCleaner = false;
+        catch(NullReferenceException ex){
+
         }
+        // }
+        // else
+        // {
+        //     touchCleaner = false;
+        // }
     }
 
     void FixedUpdate()
@@ -127,18 +142,19 @@ public class HandState : MonoBehaviour
             waterTime += Time.deltaTime;
             // Debug.Log(waterTime);
         }
-        if (touchCleaner && inWater)
+        if (waterTime >= 5 && touchCleaner)
         {
             soapTime += Time.deltaTime;
+            // Debug.Log(soapTime);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Water")
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.tag == "Water")
         {
             inWater = true;
-            Debug.Log("Touching Water");
         }
     }
 
