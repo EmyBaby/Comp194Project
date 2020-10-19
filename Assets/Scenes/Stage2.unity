@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &297584587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuGameObject: {fileID: 0}
+  rightHand: {fileID: 0}
   canvas: {fileID: 297584590}
   line: {fileID: 1243658700870162013, guid: ef0ee386bd2796640bc67c57701a311d, type: 3}
 --- !u!114 &297584588
@@ -2259,6 +2260,7 @@ MonoBehaviour:
   m_controller: 2
   m_parentTransform: {fileID: 0}
   m_player: {fileID: 0}
+  m_grabbedObj: {fileID: 0}
 --- !u!114 &1228866126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,6 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtPrefab: {fileID: 162952583067721700, guid: b2369dd668359594ebd6af50d522d335, type: 3}
+  bubbleGen: {fileID: 0}
 --- !u!1001 &1257422092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2601,6 +2604,7 @@ MonoBehaviour:
   m_controller: 1
   m_parentTransform: {fileID: 0}
   m_player: {fileID: 0}
+  m_grabbedObj: {fileID: 0}
 --- !u!114 &1539691034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,6 +2618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtPrefab: {fileID: 162952583067721700, guid: b2369dd668359594ebd6af50d522d335, type: 3}
+  bubbleGen: {fileID: 0}
 --- !u!1001 &1758788313
 PrefabInstance:
   m_ObjectHideFlags: 0

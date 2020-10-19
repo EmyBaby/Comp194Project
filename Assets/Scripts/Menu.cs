@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public GameObject menuGameObject;
+    public GameObject rightHand;
     public Canvas canvas;
     public LineRenderer line;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,47 +20,66 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        line.SetPosition(0, transform.position);
+        Ray ray = new Ray(rightHand.transform.position, rightHand.transform.forward);
+        line.SetPosition(0, rightHand.transform.position);
 
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, 10.0f))
         {
             line.SetPosition(1, hit.point);
-            if(hit.collider.gameObject.name == "Start")
+            if (Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") >= 0.30 || Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") >= 0.30)
             {
-                canvas.enabled = false;
-                Menu.Stage1();
-                Menu.Stage2();
-                Menu.Stage3();
-            }
-            else if(hit.collider.gameObject.name == "Stage1")
-            {
-                canvas.enabled = false;
-                Menu.Stage1();
-            }
-            else if(hit.collider.gameObject.name == "Stage2")
-            {
-                canvas.enabled = false;
-                Menu.Stage2();
-            }
-            else if(hit.collider.gameObject.name == "Stage3")
-            {
-                canvas.enabled = false;
-                Menu.Stage3();
+                if(hit.collider.gameObject.name == "StartButton")
+                {
+                    Debug.Log("Pressed start");
+                    canvas.enabled = false;
+                    Menu.Stage1();
+                    Menu.Stage2();
+                    Menu.Stage3();
+                    
+                }
+                else if(hit.collider.gameObject.name == "Stage1Button")
+                {
+                    Debug.Log("Pressed stage 1");
+                    canvas.enabled = false;
+                    Menu.Stage1();
+                    
+                }
+                else if(hit.collider.gameObject.name == "Stage2Button")
+                {
+                    Debug.Log("Pressed stage 2");
+                    canvas.enabled = false;
+                    Menu.Stage2();
+                    
+                }
+                else if(hit.collider.gameObject.name == "Stage3Button")
+                {
+                    Debug.Log("Pressed stage 3");
+                    canvas.enabled = false;
+                    Menu.Stage3();
+                    
+                }
             }
         }
+        else
+        {
+            line.SetPosition(1, rightHand.transform.position + (rightHand.transform.forward * 10));
+        }
     }
+    
     static void Stage1()
     {
-
+        SceneManager.LoadScene("Stage1");
+    
     }
+    
     static void Stage2()
     {
-
+        SceneManager.LoadScene("Stage2");
     }
+    
     static void Stage3()
     {
-
+        SceneManager.LoadScene("Stage3");
     }
 }
