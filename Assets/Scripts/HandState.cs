@@ -27,6 +27,7 @@ public class HandState : MonoBehaviour
         inWater = false;
         touchCleaner = false;
         cleaning = false;
+        bubbles = null;
     }
 
     // Update is called once per frame
