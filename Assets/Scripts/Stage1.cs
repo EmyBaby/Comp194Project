@@ -49,6 +49,7 @@ For your next task, you will repeat the same cleaning process with a cutting boa
         {
             line.gameObject.SetActive(true);
             line.SetPosition(0, rightHand.transform.position);
+            panel.transform.GetChild(1).gameObject.SetActive(true);            
             RaycastHit hit;
             if (Physics.Raycast(new Ray(rightHand.transform.position, rightHand.transform.forward), out hit, 10.0f))
             {
@@ -70,6 +71,7 @@ For your next task, you will repeat the same cleaning process with a cutting boa
         else
         {
             line.gameObject.SetActive(false);
+            panel.transform.GetChild(1).gameObject.SetActive(false);            
         }
 
         if (textIndex >= 2 && textIndex <= 4)
@@ -95,24 +97,24 @@ For your next task, you will repeat the same cleaning process with a cutting boa
 
     void WashHandGUI()
     {
-        panel.transform.GetChild(1).gameObject.SetActive(false);
+
         panel.transform.GetChild(2).gameObject.SetActive(true);
         if (textIndex == 2)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand wet: {Mathf.Round(leftHand.GetComponent<HandState>().getWaterTime() * 100)/100} sec Right hand wet: {Mathf.Round(rightHand.GetComponent<HandState>().getWaterTime() * 100)/100} sec";
-            if (leftHand.GetComponent<HandState>().getWaterTime() >= 5 && rightHand.GetComponent<HandState>().getWaterTime() >= 5)
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand wet: {Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec Right hand wet: {Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
+            if (leftHand.GetComponent<ObjectState>().getWaterTime() >= 5 && rightHand.GetComponent<ObjectState>().getWaterTime() >= 5)
             textIndex++;
         }
         if (textIndex == 3)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand soap: {Mathf.Round(leftHand.GetComponent<HandState>().getSoapTime() * 100)/100} sec Right hand soap: {Mathf.Round(rightHand.GetComponent<HandState>().getSoapTime() * 100)/100} sec";
-            if (leftHand.GetComponent<HandState>().getSoapTime() >= 5 && rightHand.GetComponent<HandState>().getSoapTime() >= 5)
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand soap: {Mathf.Round(leftHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec Right hand soap: {Mathf.Round(rightHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec";
+            if (leftHand.GetComponent<ObjectState>().getSoapTime() >= 5 && rightHand.GetComponent<ObjectState>().getSoapTime() >= 5)
             textIndex++;
         }
         if (textIndex == 4)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand rinse: {Mathf.Round(leftHand.GetComponent<HandState>().getWaterTime() * 100)/100} sec Right hand rinse: {Mathf.Round(rightHand.GetComponent<HandState>().getWaterTime() * 100)/100} sec";
-            if (leftHand.GetComponent<HandState>().getWaterTime() >= 10 && rightHand.GetComponent<HandState>().getWaterTime() >= 10)
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand rinse: {Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec Right hand rinse: {Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
+            if (leftHand.GetComponent<ObjectState>().getWaterTime() >= 10 && rightHand.GetComponent<ObjectState>().getWaterTime() >= 10)
             textIndex++;
             panel.transform.GetChild(2).gameObject.SetActive(false);
             raycastMode = true;

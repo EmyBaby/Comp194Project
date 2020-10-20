@@ -15,7 +15,11 @@ TagManager:
   - RightKnob
   - LeftKnob
   - Cleaner
+<<<<<<< Updated upstream
   - Bread
+=======
+  - Knife
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
