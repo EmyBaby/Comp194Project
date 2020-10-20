@@ -4,48 +4,25 @@ using UnityEngine;
 
 public class KnifeUse : MonoBehaviour
 {
+    public GameObject bread;
+    public GameObject leftBread;
+    public GameObject rightBread;
+    public void OnTriggerEnter(Collider bread)
+    {
+        Vector3 leftBreadPosition = new Vector3(-0.839f, 1.199f, -0.65f);
+        Vector3 rightBreadPosition = new Vector3(-0.839f, 1.199f, -0.43f);
+        Destroy(bread);
+        Instantiate(leftBread, leftBreadPosition, Quaternion.AngleAxis(90, Vector3.right));
+        Instantiate(rightBread, rightBreadPosition, Quaternion.AngleAxis(90, Vector3.right));
+    }
     // Start is called before the first frame update
-    public GameObject other;
-    public GameObject blade;
-    bool handColliding;
-    GameObject hand;
     void Start()
     {
-
-    }
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.GetComponent<Rigidbody>()) 
-        {
-            hand = other.gameObject;
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        hand = null;
-    }
-    public void GrabObject()
-    {
-        other = hand;
-        other.transform.SetParent (this.transform);
-        other.GetComponent<Rigidbody>().isKinematic = true;
-    }
-    private void ReleaseObject()
-    {
-        other.GetComponent<Rigidbody>().isKinematic = false;
-        other.transform.SetParent (null);
-        other = null;
+        Vector3 breadPosition = bread.transform.position;
     }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Oculus_CrossPlatform_PrimaryHandTrigger") > 0.2f && hand != null) 
-        {
-            GrabObject();
-        }
-        if(Input.GetAxis("Oculus_CrossPlatform_PrimaryHandTrigger") < 0.2f && other != null) 
-        {
-            ReleaseObject();
-        }
+
     }
 }
