@@ -65,12 +65,12 @@ public class HandState : MonoBehaviour
                 }
                 dirtOnHand = true;
             }
-            if (soapTime >= 3 && bubbles == null)
+            if (soapTime >= 5 && bubbles == null)
             {
                 bubbles = Instantiate(bubbleGen, transform.position, transform.rotation, transform);
                 waterTime = 0;
             }
-            if (bubbles && waterTime >= 5)
+            if (bubbles && waterTime >= 10)
             {
                 isDirty = false;
                 cleaning = true;
@@ -165,5 +165,15 @@ public class HandState : MonoBehaviour
             inWater = false;
             Debug.Log("Not touching water");
         }
+    }
+
+    public float getWaterTime()
+    {
+        return waterTime;
+    }
+
+    public float getSoapTime()
+    {
+        return soapTime;
     }
 }
