@@ -7,6 +7,7 @@ public class Stage1 : MonoBehaviour
     public GameObject leftHand;
     public GameObject rightHand;
     public GameObject panel;
+    public GameObject cuttingBoard;
     public LineRenderer line;
     TMPro.TextMeshProUGUI guide;
     List<string> UIText;
@@ -35,11 +36,14 @@ Rub both your hands with the soap bar for 5 seconds until bubbles form!");
 Rinse your hands off for about 10 seconds until the soap washes off and dirt falls.");
         UIText.Add(@"Your hands are all clean! You're ready to handle objects. However, basic hygiene applies to kitchenware as well.
 For your next task, you will repeat the same cleaning process with a cutting board and soapy sponge");
+        UIText.Add(@"Wet the board for 5 seconds, rub it with the sponge for 5 seconds, then rinse it for 10 seconds.");
+        UIText.Add(@"Good job! You now have basic experience with kitchen hygiene.");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if(guide.text != UIText[textIndex])
         {
             guide.text = UIText[textIndex];
@@ -76,8 +80,20 @@ For your next task, you will repeat the same cleaning process with a cutting boa
 
         if (textIndex >= 2 && textIndex <= 4)
         {
-            WashHandGUI();
             raycastMode = false;
+            WashHandGUI();
+
+        }
+
+        if (textIndex == 5)
+        {
+            GameObject.Find("Sink_Counter").transform.GetChild(4).GetChild(0).gameObject.GetComponent<Sink>().setTriggerMode(true);
+        }
+
+        if (textIndex == 6)
+        {
+            raycastMode = false;
+            WashObjectGUI();
         }
     }
 
@@ -113,12 +129,48 @@ For your next task, you will repeat the same cleaning process with a cutting boa
         }
         if (textIndex == 4)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand rinse: {Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec Right hand rinse: {Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
-            if (leftHand.GetComponent<ObjectState>().getWaterTime() >= 10 && rightHand.GetComponent<ObjectState>().getWaterTime() >= 10)
-            textIndex++;
-            panel.transform.GetChild(2).gameObject.SetActive(false);
-            raycastMode = true;
+            float leftHandWaterTime = Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100;
+            float rightHandWaterTime = Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100;
+            
+            if (leftHand.GetComponent<ObjectState>().getIsDirty() == false)
+            {
+                leftHandWaterTime = 10;
+            }
+            if (rightHand.GetComponent<ObjectState>().getIsDirty() == false)
+            {
+                rightHandWaterTime = 10;
+            }
+            
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand rinse: {leftHandWaterTime} sec Right hand rinse: {rightHandWaterTime} sec";
+            if (leftHand.GetComponent<ObjectState>().getIsDirty() == false && rightHand.GetComponent<ObjectState>().getIsDirty() == false)
+            {
+                textIndex++;
+                panel.transform.GetChild(2).gameObject.SetActive(false);
+                raycastMode = true;
+            }
 
+        }
+    }
+
+    void WashObjectGUI()
+    {
+        panel.transform.GetChild(2).gameObject.SetActive(true);
+        if (cuttingBoard.GetComponent<ObjectState>().getIsDirty() == false)
+        {
+            textIndex++;
+            raycastMode = true;
+        }
+        if (cuttingBoard.GetComponent<ObjectState>().getSoapTime() >= 5 && cuttingBoard.GetComponent<ObjectState>().getWaterTime() < 10)
+        {
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Rinse: {Mathf.Round(cuttingBoard.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
+        }
+        if (cuttingBoard.GetComponent<ObjectState>().getWaterTime() >= 5 && cuttingBoard.GetComponent<ObjectState>().getSoapTime() < 5)
+        {
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Lather: {Mathf.Round(cuttingBoard.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec";
+        }
+        if (cuttingBoard.GetComponent<ObjectState>().getWaterTime() < 5 && cuttingBoard.GetComponent<ObjectState>().getSoapTime() == 0)
+        {
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Wet: {Mathf.Round(cuttingBoard.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
         }
     }
 }
