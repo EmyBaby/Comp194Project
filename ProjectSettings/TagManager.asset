@@ -20,6 +20,7 @@ TagManager:
   - CuttingBoard
   - Door
   - Open Door
+  - Tray Holder
   layers:
   - Default
   - TransparentFX
