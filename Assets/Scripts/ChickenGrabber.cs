@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ChickenGrabber : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject tray;
+    public GameObject chickenTray;
+    void OnTriggerEnter(Collider tray)
     {
-        
+        if(tray.transform.tag == "Tray Holder")
+        {
+            Destroy(gameObject);
+            Vector3 trayPosition = tray.transform.position;
+            Instantiate(chickenTray, trayPosition, Quaternion.AngleAxis(0, Vector3.right));
+        }
     }
-
-    // Update is called once per frame
     void Update()
-    {
-        
-    }
+   {
+       
+   } 
 }
