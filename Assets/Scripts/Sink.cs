@@ -10,6 +10,7 @@ public class Sink : MonoBehaviour
     float transformFactor;
     Vector3 originalWater;
     bool triggerMode;
+    bool soundPlay;
     
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,17 @@ public class Sink : MonoBehaviour
 
         if (water.activeInHierarchy == true)
         {
-
+            if (gameObject.GetComponent<AudioSource>().isPlaying == false)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+            }
+        }
+        else
+        {
+            if (gameObject.GetComponent<AudioSource>().isPlaying == true)
+            {
+                gameObject.GetComponent<AudioSource>().Stop();
+            }
         }
     }
 
