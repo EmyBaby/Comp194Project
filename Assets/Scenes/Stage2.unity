@@ -647,6 +647,7 @@ MonoBehaviour:
   bread: {fileID: 34169720}
   leftBread: {fileID: 8298399500502030493, guid: 3f635a43f01a9184986d61f00b78d2c3, type: 3}
   rightBread: {fileID: 4030836303210156314, guid: 743d16038be90fa499587110dc93e7a9, type: 3}
+  tinyBread: {fileID: 0}
 --- !u!1 &109100452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,6 +3461,7 @@ MonoBehaviour:
   bread: {fileID: 34169720}
   leftBread: {fileID: 8298399500502030493, guid: 3f635a43f01a9184986d61f00b78d2c3, type: 3}
   rightBread: {fileID: 4030836303210156314, guid: 743d16038be90fa499587110dc93e7a9, type: 3}
+  tinyBread: {fileID: 4980407478918094423, guid: b213777540142e849881d0e348fbe1ab, type: 3}
 --- !u!114 &715776084
 MonoBehaviour:
   m_ObjectHideFlags: 0
