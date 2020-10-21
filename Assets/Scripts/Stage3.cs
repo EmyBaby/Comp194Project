@@ -34,9 +34,9 @@ public class Stage3 : MonoBehaviour
         raycastMode = true;
         coolDown = 2;
         UIText = new List<string>();
-        UIText.Add(@"Welcome to Stage 3 of Kitchen Safety Training. This stage will show you the importance of cooking to the right temperature.");
-        UIText.Add(@"In this stage we will be using chicken as an example. The proper temperatures to cook chicken is 165 degrees fahrenheit.");
-        UIText.Add(@"First start by putting the chicken into the oven.");
+        UIText.Add(@"Welcome to Stage 3 of Kitchen Safety Training. This stage will show you the importance of cooking at the right temperature and how to stay safe while in the proximity of high heat content.");
+        UIText.Add(@"In this stage we will be using chicken to bake as an example. The proper temperatures to cook chicken is 165 degrees fahrenheit.");
+        UIText.Add(@"First start by putting the chicken into the oven by grabbing the chicken on the tray with the tray holder attached to your hand.");
         UIText.Add(@"Once the temperature reads 165 degrees fahrenheit take it out of the oven.");
         UIText.Add(@"When cooking meat products it is important to make sure it is cook throughly as to avoid becoming sick.");
     }
