@@ -38,6 +38,7 @@ Rinse your hands off for about 10 seconds until the soap washes off and dirt fal
 For your next task, you will repeat the same cleaning process with a cutting board and soapy sponge");
         UIText.Add(@"Wet the board for 5 seconds, rub it with the sponge for 5 seconds, then rinse it for 10 seconds.");
         UIText.Add(@"Good job! You now have basic experience with kitchen hygiene.");
+        textIndex = 5;
     }
 
     // Update is called once per frame
@@ -95,6 +96,7 @@ For your next task, you will repeat the same cleaning process with a cutting boa
             raycastMode = false;
             WashObjectGUI();
         }
+        // textIndex = 6;
     }
 
     void FixedUpdate()

@@ -164,6 +164,7 @@ public class ObjectState : MonoBehaviour
     {
         if (other.gameObject.tag == "Water")
         {
+            Debug.Log("Triggering water");
             inWater = true;
         }
         if (other.gameObject.tag == "Cleaner")
@@ -176,6 +177,7 @@ public class ObjectState : MonoBehaviour
     {
         if (other.gameObject.tag == "Water")
         {
+            Debug.Log("Colliding water");
             inWater = false;
         }
         if (other.gameObject.tag == "Cleaner")
