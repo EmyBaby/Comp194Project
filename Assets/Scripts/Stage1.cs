@@ -10,6 +10,8 @@ public class Stage1 : MonoBehaviour
     public GameObject cuttingBoard;
     public LineRenderer line;
     TMPro.TextMeshProUGUI guide;
+    GameObject soap;
+    GameObject sponge;
     List<string> UIText;
     bool triggerPressed;
     bool raycastMode;
@@ -23,6 +25,8 @@ public class Stage1 : MonoBehaviour
         panel.transform.GetChild(2).gameObject.SetActive(false);
         raycastMode = true;
         coolDown = 2;
+        soap = GameObject.Find("Soap");
+        sponge = GameObject.Find("Sponge");
         UIText = new List<string>();
         UIText.Add(@"Hello! Welcome to Kitchen Safety Training. This training will teach you a couple things about kitchen safety.
 The first and most basic concept that must be applied at all times is hygiene!");
@@ -38,7 +42,6 @@ Rinse your hands off for about 10 seconds until the soap washes off and dirt fal
 For your next task, you will repeat the same cleaning process with a cutting board and soapy sponge");
         UIText.Add(@"Wet the board for 5 seconds, rub it with the sponge for 5 seconds, then rinse it for 10 seconds.");
         UIText.Add(@"Good job! You now have basic experience with kitchen hygiene.");
-        textIndex = 5;
     }
 
     // Update is called once per frame
@@ -79,6 +82,11 @@ For your next task, you will repeat the same cleaning process with a cutting boa
             panel.transform.GetChild(1).gameObject.SetActive(false);
         }
 
+        if (textIndex == 1)
+        {
+            cuttingBoard.SetActive(false);
+        }
+
         if (textIndex >= 2 && textIndex <= 4)
         {
             raycastMode = false;
@@ -89,6 +97,9 @@ For your next task, you will repeat the same cleaning process with a cutting boa
         if (textIndex == 5)
         {
             GameObject.Find("Sink_Counter").transform.GetChild(4).GetChild(0).gameObject.GetComponent<Sink>().setTriggerMode(true);
+            soap.SetActive(false);
+            sponge.SetActive(true);
+            cuttingBoard.SetActive(true);
         }
 
         if (textIndex == 6)
@@ -96,7 +107,6 @@ For your next task, you will repeat the same cleaning process with a cutting boa
             raycastMode = false;
             WashObjectGUI();
         }
-        // textIndex = 6;
     }
 
     void FixedUpdate()
