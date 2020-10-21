@@ -17,6 +17,8 @@ TagManager:
   - Cleaner
   - Bread
   - Knife
+  - Door
+  - Open Door
   layers:
   - Default
   - TransparentFX
@@ -26,8 +28,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Hands
+  - GrabbableHandle
   - 
   - 
   - 
