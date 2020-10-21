@@ -42,8 +42,9 @@ public class Stage2 : MonoBehaviour
         UIText.Add(@"Perfect! The blade seems to be a little dirty. Put your hygiene knowledge to the test and wash the knife.
         Always keep the blade facing away from you.");
         UIText.Add(@"Squeaky clean! Now that that's out of the way, we're going to try using the knife to cut.");
-        UIText.Add(@"Slice the bread on the cutting board through the middle to create two equal slices.");
-        UIText.Add(@"Place the knife down.");
+        UIText.Add(@"Slice the bread on the cutting board right down the middle to create two equal slices.");
+        UIText.Add(@"Nicely done! Now do the same with the smaller two slices.");
+        UIText.Add(@"Now, place the knife down safely and with the blade facing away.");
         UIText.Add(@"SUCCESS! You may now move on to stage 3.");
         panel.transform.parent.position = pos1;
         panel.transform.parent.eulerAngles = rot1;
@@ -84,7 +85,7 @@ public class Stage2 : MonoBehaviour
                             panel.transform.parent.eulerAngles = rot2;
                         }
 
-                        if (textIndex == 7)
+                        if (textIndex == 8)
                         {
                             SceneManager.LoadScene("Stage3");
                         }
@@ -111,7 +112,7 @@ public class Stage2 : MonoBehaviour
         //     player.transform.eulerAngles = new Vector3(0f, 270f, 0f);
         // }
 
-        if ((textIndex >= 2 && textIndex <= 3) || (textIndex >= 5 && textIndex <= 6))
+        if ((textIndex >= 2 && textIndex <= 3) || (textIndex >= 5 && textIndex <= 7))
         {
             raycastMode = false;
             KnifeControll();
@@ -155,7 +156,11 @@ public class Stage2 : MonoBehaviour
         {
             textIndex++;
         }
-        else if (textIndex == 6 && objectGrabbed == false)
+        else if (textIndex == 6 && knife.gameObject.GetComponent<KnifeUse>().GetCut2())
+        {
+            textIndex++;
+        }
+        else if (textIndex == 7 && objectGrabbed == false)
         {
             textIndex++;
             // panel.transform.GetChild(2).gameObject.SetActive(false);
