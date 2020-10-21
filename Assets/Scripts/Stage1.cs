@@ -135,13 +135,15 @@ You may move onto stage 2.");
         panel.transform.GetChild(2).gameObject.SetActive(true);
         if (textIndex == 2)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand wet: {Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec Right hand wet: {Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $@"Left hand wet: {Mathf.Round(leftHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec
+Right hand wet: {Mathf.Round(rightHand.GetComponent<ObjectState>().getWaterTime() * 100)/100} sec";
             if (leftHand.GetComponent<ObjectState>().getWaterTime() >= 5 && rightHand.GetComponent<ObjectState>().getWaterTime() >= 5)
             textIndex++;
         }
         if (textIndex == 3)
         {
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand soap: {Mathf.Round(leftHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec Right hand soap: {Mathf.Round(rightHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec";
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $@"Left hand soap: {Mathf.Round(leftHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec
+Right hand soap: {Mathf.Round(rightHand.GetComponent<ObjectState>().getSoapTime() * 100)/100} sec";
             if (leftHand.GetComponent<ObjectState>().getSoapTime() >= 5 && rightHand.GetComponent<ObjectState>().getSoapTime() >= 5)
             textIndex++;
         }
@@ -159,7 +161,8 @@ You may move onto stage 2.");
                 rightHandWaterTime = 10;
             }
             
-            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $"Left hand rinse: {leftHandWaterTime} sec Right hand rinse: {rightHandWaterTime} sec";
+            panel.transform.GetChild(2).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = $@"Left hand rinse: {leftHandWaterTime} sec
+Right hand rinse: {rightHandWaterTime} sec";
             if (leftHand.GetComponent<ObjectState>().getIsDirty() == false && rightHand.GetComponent<ObjectState>().getIsDirty() == false)
             {
                 textIndex++;
