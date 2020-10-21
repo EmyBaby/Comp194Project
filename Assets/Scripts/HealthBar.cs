@@ -31,6 +31,7 @@ public class HealthBar : MonoBehaviour
         currentHealth = 100;
         SetMaxHealth(currentHealth);
         SetHealth(currentHealth);
+        transform.GetChild(3).gameObject.SetActive(false);
     }
 
     void Update()
@@ -47,6 +48,8 @@ public class HealthBar : MonoBehaviour
         if (timerOn)
         {
             timer += Time.deltaTime;
+            transform.GetChild(3).gameObject.SetActive(true);
+
         }
         if (timer >= 5)
         {
