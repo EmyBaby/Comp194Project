@@ -57,7 +57,7 @@ public class Stage2 : MonoBehaviour
     // Update is called once per frame
  void Update()
     {
-        if(guide.text != UIText[textIndex])
+        if (guide.text != UIText[textIndex])
         {
             guide.text = UIText[textIndex];
         }
