@@ -9,6 +9,7 @@ public class Sink : MonoBehaviour
     public GameObject rightKnob;
     float transformFactor;
     Vector3 originalWater;
+    bool triggerMode;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,10 @@ public class Sink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (triggerMode)
+        {
+            water.GetComponent<CapsuleCollider>().isTrigger = true;
+        }
         if (rightKnob.transform.localEulerAngles.y >= 35 || leftKnob.transform.localEulerAngles.y <= 145)
         {
             water.SetActive(true);
@@ -30,5 +35,28 @@ public class Sink : MonoBehaviour
         {
             water.SetActive(false);
         }
+
+        if (water.activeInHierarchy == true)
+        {
+
+        }
     }
+
+    public void setTriggerMode(bool x)
+    {
+        if (x == true)
+        {
+            triggerMode = true;
+        }
+        if (x == false)
+        {
+            triggerMode = false;
+        }
+    }
+
+    void onTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject);
+    }
+    
 }

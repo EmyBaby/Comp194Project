@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -162,7 +162,6 @@ public class ObjectState : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Water")
         {
             inWater = true;
@@ -187,7 +186,6 @@ public class ObjectState : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Water")
         {
             inWater = true;
@@ -220,5 +218,23 @@ public class ObjectState : MonoBehaviour
     public float getSoapTime()
     {
         return soapTime;
+    }
+
+    public bool getIsDirty()
+    {
+        return isDirty;
+    }
+
+    public void setInWater(bool x)
+    {
+        if (x == true)
+        {
+            inWater = true;
+        }
+        else if (x == false)
+        {
+            inWater = false;
+        }
+
     }
 }
