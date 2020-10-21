@@ -20,7 +20,6 @@ public class Stage2 : MonoBehaviour
     void Start()
     {
         guide = panel.transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-        panel.transform.GetChild(2).gameObject.SetActive(false);
         raycastMode = true;
         coolDown = 2;
         UIText = new List<string>();
@@ -55,7 +54,7 @@ public class Stage2 : MonoBehaviour
                 {
                     if(hit.collider.gameObject.name == "NextButton")
                     {
-                        triggerPressed = true;
+                        TriggerPress();
                         textIndex++;
                     }
                 }
@@ -73,15 +72,16 @@ public class Stage2 : MonoBehaviour
 
         if (textIndex >= 2 && textIndex <= 4)
         {
-            KnifeControll();
             raycastMode = false;
+            KnifeControll();
+
         }
     }
+
     void FixedUpdate()
     {
         if (triggerPressed)
         {
-            coolDown = 0;
             triggerPressed = false;
         }
         if (coolDown < 2)
@@ -90,22 +90,29 @@ public class Stage2 : MonoBehaviour
         }
 
     }
+
+    void TriggerPress()
+    {
+        triggerPressed = true;
+        coolDown = 0;
+    }
+
     void KnifeControll()
     {
-        panel.transform.GetChild(2).gameObject.SetActive(true);
+        // panel.transform.GetChild(2).gameObject.SetActive(true);
         bool objectGrabbed = knife.transform.gameObject.GetComponent<OVRGrabbable>().isGrabbed;
         if(textIndex == 2 && objectGrabbed)
         {
             textIndex++;
         }
-        else if(textIndex == 3 && leftBread.position.y == 1.199f)
+        else if(textIndex == 3 && knife.gameObject.GetComponent<KnifeUse>().GetCut())
         {
             textIndex++;
         }
-        else if(textIndex == 4 && leftBread.position.y == 1.199f)
+        else if(textIndex == 4 && objectGrabbed == false)
         {
             textIndex++;
-            panel.transform.GetChild(2).gameObject.SetActive(false);
+            // panel.transform.GetChild(2).gameObject.SetActive(false);
             raycastMode = true;
         }
     }
