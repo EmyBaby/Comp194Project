@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage1 : MonoBehaviour
 {
@@ -41,7 +42,8 @@ Rinse your hands off for about 10 seconds until the soap washes off and dirt fal
         UIText.Add(@"Your hands are all clean! You're ready to handle objects. However, basic hygiene applies to kitchenware as well.
 For your next task, you will repeat the same cleaning process with a cutting board and soapy sponge");
         UIText.Add(@"Wet the board for 5 seconds, rub it with the sponge for 5 seconds, then rinse it for 10 seconds.");
-        UIText.Add(@"Good job! You now have basic experience with kitchen hygiene.");
+        UIText.Add(@"Good job! You now have basic experience with kitchen hygiene.
+You may move onto stage 2.");
     }
 
     // Update is called once per frame
@@ -66,6 +68,10 @@ For your next task, you will repeat the same cleaning process with a cutting boa
                 {
                     if(hit.collider.gameObject.name == "NextButton")
                     {
+                        if (textIndex == 7)
+                        {
+                            SceneManager.LoadScene("Stage2");
+                        }
                         triggerPressed = true;
                         textIndex++;
                     }

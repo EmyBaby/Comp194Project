@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage2 : MonoBehaviour
 {
@@ -43,10 +44,10 @@ public class Stage2 : MonoBehaviour
         UIText.Add(@"Squeaky clean! Now that that's out of the way, we're going to try using the knife to cut.");
         UIText.Add(@"Slice the bread on the cutting board through the middle to create two equal slices.");
         UIText.Add(@"Place the knife down.");
-        UIText.Add(@"SUCCESS!");
+        UIText.Add(@"SUCCESS! You may now move on to stage 3.");
         panel.transform.parent.position = pos1;
-        panel.transform.parent.localEulerAngles = rot1;
-        player.transform.position = new Vector3(-1.906f, 1.263f, -1.613f);
+        panel.transform.parent.eulerAngles = rot1;
+        player.transform.position = new Vector3(-1.906f, 0f, -1.613f);
         player.transform.eulerAngles = new Vector3(0f, 180f, 0f);
         knife.transform.position = new Vector3(-2.537f, 1.224f, -2.411f);
         knife.transform.eulerAngles = new Vector3(90f, -90f, 0f);
@@ -77,6 +78,15 @@ public class Stage2 : MonoBehaviour
                         {
                             knife.transform.position = new Vector3(-0.931f, 1.249f, -0.095f);
                             knife.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                            player.transform.position = new Vector3(0.112f, 0f, -0.49f);
+                            player.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+                            panel.transform.parent.position = pos2;
+                            panel.transform.parent.eulerAngles = rot2;
+                        }
+
+                        if (textIndex == 7)
+                        {
+                            SceneManager.LoadScene("Stage3");
                         }
                         TriggerPress();
                         textIndex++;
@@ -95,11 +105,11 @@ public class Stage2 : MonoBehaviour
         }
 
 
-        if (textIndex == 5)
-        {
-            player.transform.position = new Vector3(0.112f, 1.283f, -0.49f);
-            player.transform.eulerAngles = new Vector3(0f, 270f, 0f);
-        }
+        // if (textIndex == 5)
+        // {
+        //     player.transform.position = new Vector3(0.112f, 1.283f, -0.49f);
+        //     player.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+        // }
 
         if ((textIndex >= 2 && textIndex <= 3) || (textIndex >= 5 && textIndex <= 6))
         {
