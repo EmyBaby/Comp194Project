@@ -17,6 +17,7 @@ TagManager:
   - Cleaner
   - Bread
   - Knife
+  - CuttingBoard
   layers:
   - Default
   - TransparentFX

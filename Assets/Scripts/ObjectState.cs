@@ -65,6 +65,17 @@ public class ObjectState : MonoBehaviour
                     Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(0.028f, 0.0927f, 0f);
                     Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.1115f, -0.196f, 0f);
                 }
+                if (gameObject.tag == "CuttingBoard")
+                {
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.3341889f, 0f, 0.5622768f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.2055001f, 0f, 0.01599908f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.126f, 0f, 0.3009999f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(0.3125f, 0f, 0.5904996f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(0.2059999f, 0f, -0.3299999f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(0.2059999f, 0f, 0.06999969f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.03000021f, 0f, -0.2149999f);
+                    Instantiate(dirtPrefab, transform.position, transform.rotation, transform).transform.localPosition += new Vector3(-0.3175002f, 0f, -0.4145002f);
+                }
                 dirtList = new List<GameObject>();
                 for (int i = 0; i < transform.childCount; i++)
                 {
@@ -75,7 +86,13 @@ public class ObjectState : MonoBehaviour
                 }
                 foreach (GameObject dirt in dirtList)
                 {
-                    // Debug.Log(dirt);
+                    dirt.transform.SetParent(transform.GetChild(0));
+                }
+                if (gameObject.tag != "LeftHand" && gameObject.tag != "RightHand")
+                {
+                    transform.GetChild(0).GetComponent<BoxCollider>().size = transform.GetComponent<BoxCollider>().size;
+                    transform.GetChild(0).GetComponent<BoxCollider>().center = transform.GetComponent<BoxCollider>().center;
+                    
                 }
                 dirtOnHand = true;
             }
@@ -237,6 +254,17 @@ public class ObjectState : MonoBehaviour
         {
             inWater = false;
         }
+    }
 
+    public void setTouchCleaner(bool x)
+    {
+        if (x == true)
+        {
+            touchCleaner = true;
+        }
+        else if (x == false)
+        {
+            touchCleaner = false;
+        }
     }
 }
