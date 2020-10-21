@@ -82,6 +82,11 @@ For your next task, you will repeat the same cleaning process with a cutting boa
             panel.transform.GetChild(1).gameObject.SetActive(false);
         }
 
+        if (textIndex == 1)
+        {
+            cuttingBoard.SetActive(false);
+        }
+
         if (textIndex >= 2 && textIndex <= 4)
         {
             raycastMode = false;
@@ -94,11 +99,11 @@ For your next task, you will repeat the same cleaning process with a cutting boa
             GameObject.Find("Sink_Counter").transform.GetChild(4).GetChild(0).gameObject.GetComponent<Sink>().setTriggerMode(true);
             soap.SetActive(false);
             sponge.SetActive(true);
+            cuttingBoard.SetActive(true);
         }
 
         if (textIndex == 6)
         {
-            cuttingBoard.SetActive(true);
             raycastMode = false;
             WashObjectGUI();
         }
