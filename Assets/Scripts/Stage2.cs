@@ -9,6 +9,7 @@ public class Stage2 : MonoBehaviour
     public GameObject rightHand;
     public GameObject panel;
     public GameObject player;
+    public GameObject sponge;
     public LineRenderer line;
     TMPro.TextMeshProUGUI guide;
     List<string> UIText;
@@ -35,8 +36,8 @@ public class Stage2 : MonoBehaviour
         coolDown = 2;
         UIText = new List<string>();
         UIText.Add(@"Welcome to Stage 2 of Kitchen Safety Training. This stage will guide you on maintaining safety while using a knife in a kitchen.");
-        UIText.Add(@"According to a survey by the National Electronic Injury Surveillance System, 330,000 hospitals visits a year are due to knife accidents. We can
-        limit this by carefully handling a knife");
+        UIText.Add(@"According to a survey by the National Electronic Injury Surveillance System, 330,000 hospitals visits a year are due to knife accidents.
+        We can limit this by carefully handling the knife");
         UIText.Add(@"First thing to keep in mind is to avoid touching near the sharp-end of the blade and maintaing a firm grip on the handle in order to have strong control over the movement of the knife. 
         Pick up the knife by only grabbing the handle. Do not touch the blade!");
         UIText.Add(@"Perfect! The blade seems to be a little dirty. Put your hygiene knowledge to the test and wash the knife.
@@ -60,6 +61,27 @@ public class Stage2 : MonoBehaviour
         if (guide.text != UIText[textIndex])
         {
             guide.text = UIText[textIndex];
+        }
+        
+        if  (sponge.transform.position.y < 0.3)
+        {
+            sponge.transform.position = new Vector3(-2.4817f, 1.1287f, -2.4825f);
+            sponge.transform.eulerAngles = new Vector3(270f, 0f, 90f);
+            sponge.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+        if  (knife.position.y < 0.3)
+        {
+            if (textIndex >= 0 && textIndex <= 4)
+            {
+                knife.position = new Vector3(-2.537f, 1.224f, -2.411f);
+                knife.transform.eulerAngles = new Vector3(90f, -90f, 0f);
+            }
+            else
+            {
+                knife.position = new Vector3(-0.931f, 1.249f, -0.095f);
+                knife.eulerAngles = new Vector3(0f, 0f, 0f);                
+            }
+            knife.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
         
         if (raycastMode)

@@ -23,11 +23,6 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 5)
-        {
-            Menu.Stage1();
-        }
         Ray ray = new Ray(rightHand.transform.position, rightHand.transform.forward);
         line.SetPosition(0, rightHand.transform.position);
 
