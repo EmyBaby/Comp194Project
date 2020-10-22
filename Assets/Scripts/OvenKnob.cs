@@ -8,13 +8,19 @@ public class OvenKnob : MonoBehaviour
     Vector3 knobEulers;
     bool handTouching;
     bool handColliding;
+    bool ovenOn;
+    bool isCooking;
     GameObject hand;
+    public GameObject heat;
     
     // Start is called before the first frame update
     void Start()
     {
         handTouching = false;
+        ovenOn = false;
+        isCooking = false;
         knobEulers = transform.localEulerAngles;
+        heat.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,6 +47,24 @@ public class OvenKnob : MonoBehaviour
             }
             previousY = hand.transform.localEulerAngles.y;
         }
+
+        if(transform.localEulerAngles.y >= 30 && transform.localEulerAngles.y <= 300)
+        {
+            heat.SetActive(true);
+            ovenOn = true;
+            if(transform.localEulerAngles.y >= 240 && transform.localEulerAngles.y <= 300)
+            {
+                isCooking = true;
+            }
+        }
+    }
+    public bool OvenIsOn()
+    {
+        return ovenOn;
+    }
+    public bool ChickenIsCooking()
+    {
+        return isCooking;
     }
 
     void OnTriggerEnter(Collider other)
