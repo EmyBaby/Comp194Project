@@ -23,6 +23,7 @@ TagManager:
   - Tray Holder
   - Chicken Tray
   - ChickenTray
+  - OvenFloor
   layers:
   - Default
   - TransparentFX
