@@ -19,7 +19,9 @@ public class ChickenGrabber : MonoBehaviour
             //Vector3 trayHolderPosition = gameObject.transform.position;
             //Quaternion trayHolderRotation = gameObject.transform.rotation;
             //Instantiate(attachedChicken, trayHolderPosition, trayHolderRotation);
-            chicken.gameObject.transform.parent = tray.transform;
+            chicken.transform.localEulerAngles = new Vector3(0, 270, 0);
+            chicken.transform.SetParent(tray.transform);
+            chicken.transform.localPosition = new Vector3(0.15f, 0.055f, 0f);
             chickenGrab = true;
         }
     }

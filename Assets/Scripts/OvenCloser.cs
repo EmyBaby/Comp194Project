@@ -9,10 +9,11 @@ public class OvenCloser : MonoBehaviour
     public GameObject openDoor;
     public void OnTriggerEnter(Collider openDoor)
     {
-        if(openDoor.gameObject.tag == "Open Door")
+        if(openDoor.gameObject.tag == "Open Door" && OvenOpenner.timer >= 2)
         {
             Destroy(openDoor.gameObject);
             door.gameObject.SetActive(true);
+            OvenOpenner.timer = 0;
         }
     }
     void Start()

@@ -51,10 +51,13 @@ public class OvenKnob : MonoBehaviour
         if(transform.localEulerAngles.y >= 30 && transform.localEulerAngles.y <= 300)
         {
             heat.SetActive(true);
+            heat.GetComponent<Light>().intensity = 1;
             ovenOn = true;
+            isCooking = false;
             if(transform.localEulerAngles.y >= 240 && transform.localEulerAngles.y <= 300)
             {
                 isCooking = true;
+                heat.GetComponent<Light>().intensity = 2;
             }
         }
     }
