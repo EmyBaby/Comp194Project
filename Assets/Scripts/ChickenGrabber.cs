@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class ChickenGrabber : MonoBehaviour
 {
-    public GameObject tray;
-    public GameObject chickenTray;
-    void OnTriggerEnter(Collider tray)
-    {
-        if(tray.transform.tag == "Tray Holder")
-        {
-            Destroy(gameObject);
-            Vector3 trayPosition = tray.transform.position;
-            Instantiate(chickenTray, trayPosition, Quaternion.AngleAxis(0, Vector3.right));
-        }
+    void OnCollisionEnter(Collision c) {
+        var joint = gameObject.AddComponent<FixedJoint>();
+        joint.connectedBody = c.rigidbody;
     }
-    void Update()
-   {
-       
-   } 
 }
