@@ -18,27 +18,28 @@ public class Stage3 : MonoBehaviour
 
     public GameObject oven;
     public GameObject ovenKnob;
+    public GameObject trayHolder;
     public Text temperature;
     int time;
     bool isOvenOn;
-    bool isInOven;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
         temperature = GetComponent<Text>();
         isOvenOn = false;
-        isInOven = false;
 
         guide = panel.transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         raycastMode = true;
         coolDown = 2;
         UIText = new List<string>();
         UIText.Add(@"Welcome to Stage 3 of Kitchen Safety Training. This stage will show you the importance of cooking at the right temperature and how to stay safe while in the proximity of high heat content.");
-        UIText.Add(@"In this stage we will be using chicken to bake as an example. The proper temperatures to cook chicken is 165 degrees fahrenheit.");
-        UIText.Add(@"First start by putting the chicken into the oven by grabbing the chicken on the tray with the tray holder attached to your hand.");
-        UIText.Add(@"Once the temperature reads 165 degrees fahrenheit take it out of the oven.");
-        UIText.Add(@"When cooking meat products it is important to make sure it is cook throughly as to avoid becoming sick.");
+        UIText.Add(@"In this stage we will be using chicken to bake as an example. The proper temperatures to cook chicken is to have the chicken's interanl temperature at 165 degrees fahrenheit.
+        This can be done by leaving the chicken in the oven at 350*F for 25-30 minutes.");
+        UIText.Add(@"First start by putting the chicken into the oven by openning the oven and grabbing the chicken on the tray with the tray holder attached to your hand.");
+        UIText.Add(@"Place the chicken tray on the bottom of the oven and clase the oven door.");
+        UIText.Add(@"Turn the oven knob about 270 degrees to change the temperature of the oven to 350*F and let the chicken cook for 30 minutes."); //10 sec in reality; by 3 min = 1 sec?
+        UIText.Add(@"Your chicken is fully cooked! Now you can safely enjoy the chicken!");
     }
 
     // Update is called once per frame
@@ -112,7 +113,7 @@ public class Stage3 : MonoBehaviour
 
     void CookChicken()
     {
-        if(textIndex == 2 && isInOven)
+        if(textIndex == 2 && trayHolder.gameObject.GetComponent<ChickenInOven>().IsInOven())
         {
             textIndex++;
         }
@@ -120,7 +121,7 @@ public class Stage3 : MonoBehaviour
         {
             textIndex++;
         }
-        else if(textIndex == 4 && isInOven == false)
+        else if(textIndex == 4 )
         {
             
         }
