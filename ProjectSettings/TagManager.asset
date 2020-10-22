@@ -21,6 +21,8 @@ TagManager:
   - Door
   - Open Door
   - Tray Holder
+  - Chicken Tray
+  - ChickenTray
   layers:
   - Default
   - TransparentFX
