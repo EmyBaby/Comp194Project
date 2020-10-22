@@ -21,13 +21,11 @@ public class Stage3 : MonoBehaviour
     public GameObject trayHolder;
     public Text temperature;
     int time;
-    bool isOvenOn;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
         temperature = GetComponent<Text>();
-        isOvenOn = false;
 
         guide = panel.transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>();
         raycastMode = true;
@@ -37,8 +35,8 @@ public class Stage3 : MonoBehaviour
         UIText.Add(@"In this stage we will be using chicken to bake as an example. The proper temperatures to cook chicken is to have the chicken's interanl temperature at 165 degrees fahrenheit.
         This can be done by leaving the chicken in the oven at 350*F for 25-30 minutes.");
         UIText.Add(@"First start by putting the chicken into the oven by openning the oven and grabbing the chicken on the tray with the tray holder attached to your hand.");
-        UIText.Add(@"Place the chicken tray on the bottom of the oven and clase the oven door.");
-        UIText.Add(@"Turn the oven knob about 270 degrees to change the temperature of the oven to 350*F and let the chicken cook for 30 minutes."); //10 sec in reality; by 3 min = 1 sec?
+        UIText.Add(@"Place the chicken tray on the bottom of the oven and close the oven door and turn the oven knob at least 30 degrees to turn on oven.");
+        UIText.Add(@"Turn the oven knob about 270 degrees by holding the front trigger of the controller to change the temperature of the oven to 350*F and let the chicken cook for 30 minutes."); //10 sec in reality; by 3 min = 1 sec?
         UIText.Add(@"Your chicken is fully cooked! Now you can safely enjoy the chicken!");
     }
 
@@ -46,10 +44,6 @@ public class Stage3 : MonoBehaviour
  void Update()
     {
         temperature.text = time.ToString();
-        if (ovenKnob.transform.localEulerAngles.y >= 35)
-        {
-            isOvenOn = true;
-        }
 
         if(guide.text != UIText[textIndex])
         {
@@ -113,23 +107,23 @@ public class Stage3 : MonoBehaviour
 
     void CookChicken()
     {
-        if(textIndex == 2 && trayHolder.gameObject.GetComponent<ChickenInOven>().IsInOven())
+        if(textIndex == 2 && trayHolder.gameObject.GetComponent<ChickenGrabber>().ChickenIsGrabbed())
         {
             textIndex++;
         }
-        else if(textIndex == 3 && time == 165)
+        else if(textIndex == 3 && trayHolder.gameObject.GetComponent<ChickenInOven>().IsInOven() && ovenKnob.gameObject.GetComponent<OvenKnob>().OvenIsOn())
         {
             textIndex++;
         }
-        else if(textIndex == 4 )
+        else if(textIndex == 4 && ovenKnob.gameObject.GetComponent<OvenKnob>().ChickenIsCooking())
         {
-            
+            textIndex++;
         }
     }
 
     void OnTriggerStay()
     {
-        if(isOvenOn)
+        //if(isOvenOn)
         {
             time++;
         }
