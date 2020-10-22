@@ -6,16 +6,26 @@ public class ChickenGrabber : MonoBehaviour
 {
     public GameObject chicken;
     public GameObject tray;
+    bool chickenGrab;
+    void Start()
+    {
+        chickenGrab = false;
+    }
     public void OnTriggerEnter(Collider chicken)
     {
         if(chicken.gameObject.tag == "ChickenTray")
         { 
             //Destroy(chicken.gameObject);
-            Vector3 trayHolderPosition = gameObject.transform.position;
-            Quaternion trayHolderRotation = gameObject.transform.rotation;
+            //Vector3 trayHolderPosition = gameObject.transform.position;
+            //Quaternion trayHolderRotation = gameObject.transform.rotation;
             //Instantiate(attachedChicken, trayHolderPosition, trayHolderRotation);
             chicken.gameObject.transform.parent = tray.transform;
+            chickenGrab = true;
         }
+    }
+    public bool ChickenIsGrabbed()
+    {
+        return chickenGrab;
     }
     /*void Update()
     {
