@@ -9,12 +9,14 @@ public class Menu : MonoBehaviour
     public GameObject rightHand;
     public Canvas canvas;
     public LineRenderer line;
+    public static bool singleScene;
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = menuGameObject.GetComponent<Canvas>();
         canvas.enabled = true;
+        singleScene = false;
     }
 
     // Update is called once per frame
@@ -34,8 +36,6 @@ public class Menu : MonoBehaviour
                     Debug.Log("Pressed start");
                     canvas.enabled = false;
                     Menu.Stage1();
-                    Menu.Stage2();
-                    Menu.Stage3();
                     
                 }
                 else if(hit.collider.gameObject.name == "Stage1Button")
@@ -43,13 +43,14 @@ public class Menu : MonoBehaviour
                     Debug.Log("Pressed stage 1");
                     canvas.enabled = false;
                     Menu.Stage1();
-                    
+                    singleScene = true;
                 }
                 else if(hit.collider.gameObject.name == "Stage2Button")
                 {
                     Debug.Log("Pressed stage 2");
                     canvas.enabled = false;
                     Menu.Stage2();
+                    singleScene = true;
                     
                 }
                 else if(hit.collider.gameObject.name == "Stage3Button")
@@ -57,7 +58,7 @@ public class Menu : MonoBehaviour
                     Debug.Log("Pressed stage 3");
                     canvas.enabled = false;
                     Menu.Stage3();
-                    
+                    singleScene = true;
                 }
             }
         }
