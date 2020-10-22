@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     public Canvas canvas;
     public LineRenderer line;
     public static bool singleScene;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,11 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer > 5)
+        {
+            Menu.Stage1();
+        }
         Ray ray = new Ray(rightHand.transform.position, rightHand.transform.forward);
         line.SetPosition(0, rightHand.transform.position);
 
@@ -36,6 +42,7 @@ public class Menu : MonoBehaviour
                     Debug.Log("Pressed start");
                     canvas.enabled = false;
                     Menu.Stage1();
+                    singleScene = false;
                     
                 }
                 else if(hit.collider.gameObject.name == "Stage1Button")

@@ -70,7 +70,14 @@ You may move onto stage 2.");
                     {
                         if (textIndex == 7)
                         {
-                            SceneManager.LoadScene("Stage2");
+                            if (Menu.singleScene == false)
+                            {
+                                SceneManager.LoadScene("Stage2");
+                            }
+                            else
+                            {
+                                SceneManager.LoadScene("MainMenu");
+                            }
                         }
                         triggerPressed = true;
                         textIndex++;

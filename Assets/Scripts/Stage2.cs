@@ -87,7 +87,14 @@ public class Stage2 : MonoBehaviour
 
                         if (textIndex == 8)
                         {
-                            SceneManager.LoadScene("Stage3");
+                            if (Menu.singleScene == false)
+                            {
+                                SceneManager.LoadScene("Stage3");
+                            }
+                            else
+                            {
+                                SceneManager.LoadScene("MainMenu");
+                            }
                         }
                         TriggerPress();
                         textIndex++;
