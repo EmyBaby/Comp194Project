@@ -55,6 +55,25 @@ You may move onto stage 2.");
             guide.text = UIText[textIndex];
         }
         
+        if  (soap.transform.position.y < 0.3)
+        {
+            soap.transform.position = new Vector3(-2.2734f, 1.136f, -2.6455f);
+            soap.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            soap.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+        if  (sponge.transform.position.y < 0.3)
+        {
+            sponge.transform.position = new Vector3(-2.4817f, 1.1287f, -2.4825f);
+            sponge.transform.eulerAngles = new Vector3(270f, 0f, 90f);
+            sponge.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+        if  (cuttingBoard.transform.position.y < 0.3)
+        {
+            cuttingBoard.transform.position = new Vector3(-1.215f, 1.1592f, -2.257f);
+            cuttingBoard.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            cuttingBoard.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+        
         if (raycastMode)
         {
             line.gameObject.SetActive(true);

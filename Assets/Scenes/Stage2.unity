@@ -3495,6 +3495,7 @@ MonoBehaviour:
   rightHand: {fileID: 602434592}
   panel: {fileID: 1052160753}
   player: {fileID: 602662782}
+  sponge: {fileID: 1669997493}
   line: {fileID: 1436780458}
   leftBread: {fileID: 4070922714029522078, guid: 3f635a43f01a9184986d61f00b78d2c3, type: 3}
   knife: {fileID: 715776081}
